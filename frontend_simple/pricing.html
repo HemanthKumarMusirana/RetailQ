@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - RetailQ AI Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="/frontend_simple/Q - Fevicon.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0c0c1e, #1c2b40);
+      background-attachment: fixed;
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px 50px;
+      color: white;
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo img {
+      margin-right: 10px;
+    }
+
+    .navbar .links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar .links a {
+      margin-left: 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar .links a:hover {
+      color: #00bfff;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #pricingTable {
+      width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+
+    #pricingTable th, #pricingTable td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    #pricingTable th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    /* Chat styles */
+    #chatContainer {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+
+    #chatBox {
+      background-color: white;
+      border: 1px solid #ccc;
+      width: 300px;
+      padding: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    #chatMessages {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    .userMessage {
+      background-color: #f1f1f1;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 5px;
+      color: black;
+    }
+
+    .botMessage {
+      background-color: #e0f7fa;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 5px;
+      color: #00796b;
+    }
+
+    #chatInput {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 8px;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar (same as inventory.html) -->
+  <!-- Navbar -->
+<div class="navbar">
+    <a href="dashboard.html" class="logo" style="text-decoration: none; color: white;">
+      <img src="/frontend_simple/Q - Fevicon.png" alt="RetailQ Logo" width="30" height="30">
+      <span>RetailQ</span>
+    </a>
+    <div class="links">
+      <a href="inventory.html">Inventory</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="demand.html">Demand</a>
+      <a href="index.html">Logout</a>
+      <a href="profile.html">Profile</a>
+    </div>
+  </div>
+  
+
+  <!-- Pricing Table -->
+  <div class="content">
+    <h1>Pricing Management</h1>
+    <table id="pricingTable">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>margin</th>
+          <th>Price</th>
+          <th>Discount</th>
+          <th>Discounted Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be dynamically inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Chat Interface -->
+  <div id="chatContainer">
+    <div id="chatBox">
+      <div id="chatMessages"></div>
+      <input type="text" id="chatInput" placeholder="Ask a question..."/>
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Function to fetch pricing data and populate the table
+    async function loadPricing() {
+    try {
+      // Fetch pricing data from the API
+      const response = await fetch('http://localhost:5000/pricing');
+
+      // Check if the response is successful
+      if (!response.ok) {
+        throw new Error("Failed to fetch pricing data from the server");
+      }
+
+      // Parse JSON data from the response
+      const data = await response.json();
+
+      console.log("Fetched Pricing Data:", data); // Debugging: Check the structure of the fetched data
+
+      // Check if the data is an array
+      if (!Array.isArray(data)) {
+        throw new Error("Invalid pricing data format");
+      }
+
+      // Get the table body element
+      const tableBody = document.querySelector("#pricingTable tbody");
+      tableBody.innerHTML = ""; // Clear any existing table rows
+
+      // Loop through each product and populate the table rows
+      data.forEach(item => {
+        const row = tableBody.insertRow();
+
+        const productId = item["Product ID"] || "N/A";
+        const competitorPrice = item["Competitor Price"] || 0;
+        const currentPrice = item["Current Price"] || 0;
+        const salesVolume = item["Sales Volume"] || 0;
+        const suggestion = item["Suggestion"] || "N/A";
+
+        // Insert table cells for each product detail
+        row.insertCell(0).innerText = productId;
+        row.insertCell(1).innerText = `$${competitorPrice.toFixed(2)}`;
+        row.insertCell(2).innerText = `$${currentPrice.toFixed(2)}`;
+        row.insertCell(3).innerText = salesVolume;
+        row.insertCell(4).innerText = suggestion;
+      });
+
+    } catch (error) {
+      // Catch any errors during fetch or data processing
+      alert("Failed to load pricing data.");
+      console.error("Error loading pricing data:", error);
+    }
+  }
+
+    // Chat functionality
+    function sendMessage() {
+      const chatInput = document.getElementById('chatInput').value;
+      const chatMessages = document.getElementById('chatMessages');
+      
+      if (chatInput.trim() !== "") {
+        // User's message
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('userMessage');
+        userMessage.textContent = "You: " + chatInput;
+        chatMessages.appendChild(userMessage);
+
+        // Bot's response after a delay
+        setTimeout(() => {
+          const botMessage = document.createElement('div');
+          botMessage.classList.add('botMessage');
+          botMessage.textContent = "Bot: " + "This is a response to your query about " + chatInput;
+          chatMessages.appendChild(botMessage);
+
+          // Auto-scroll to bottom after new message
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        }, 1000);
+
+        // Clear input field
+        document.getElementById('chatInput').value = "";
+      }
+    }
+
+    // Load pricing on page load
+    window.onload = loadPricing;
+  </script>
+</body>
+</html>
+

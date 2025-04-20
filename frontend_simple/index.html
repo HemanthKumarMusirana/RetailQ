@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RetailQ - Home</title>
+  <link rel="icon" type="image/x-icon" href="/frontend_simple/Q - Fevicon.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body, html {
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li {
+      cursor: pointer;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #00ffe5;
+      text-decoration: underline;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      background-image: url('https://media.istockphoto.com/id/1452604857/photo/businessman-touching-the-brain-working-of-artificial-intelligence-automation-predictive.jpg?b=1&s=612x612&w=0&k=20&c=5LyslY4gssQ99CVUrUB2K75Mx2TFgnkxboAqB38OPUQ=');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      z-index: 2;
+      padding: 0 20px;
+    }
+
+    .content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #ddd;
+    }
+
+    .content button {
+      padding: 12px 30px;
+      font-size: 1rem;
+      background-color: #00ffe5;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .content button:hover {
+      background-color: #00c4b0;
+    }
+
+    section {
+      padding: 100px 50px;
+    }
+
+    #about {
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    #about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    #contact {
+      background-color: #222;
+      color: #fff;
+    }
+
+    #contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    form input, form textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    form button {
+      padding: 10px;
+      background-color: #00ffe5;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    form button:hover {
+      background-color: #00c4b0;
+    }
+
+    .logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo-img {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+        <img src="Q - Fevicon.png" alt="Logo" class="logo-img" width="30" height="30">
+        <span>RetailQ</span>
+      </div>
+      
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero" id="hero">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Welcome to RetailQ</h1>
+      <p>AI-powered Retail Optimization at Your Fingertips</p>
+      <button onclick="location.href='forecast.html'">Get Started</button>
+    </div>
+  </div>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      RetailQ is an AI-powered platform built to optimize inventory, forecast demand, and suggest real-time pricing adjustments. 
+      Designed for the next-gen retailer, our multi-agent system combines machine learning with intelligent coordination to 
+      minimize stockouts, reduce waste, and maximize revenue.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+  
+  <!-- Footer -->
+<footer style="background-color: #111; color: #fff; padding: 60px 50px 30px;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;">
+    
+    <!-- Logo + Tagline -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
+      <h2 style="font-size: 28px; margin-bottom: 10px;">RetailQ</h2>
+      <p style="color: #aaa;">AI-powered Retail Optimization</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
+      <h3 style="margin-bottom: 10px;">Quick Links</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li><a href="#hero" style="color: #aaa; text-decoration: none;">Home</a></li>
+        <li><a href="#about" style="color: #aaa; text-decoration: none;">About Us</a></li>
+        <li><a href="#contact" style="color: #aaa; text-decoration: none;">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
+      <h3 style="margin-bottom: 10px;">Follow Us</h3>
+      <div style="display: flex; gap: 15px; font-size: 24px;">
+        <a href="#" style="color: #aaa; transition: color 0.3s;">&#120143;</a> <!-- X -->
+        <a href="#" style="color: #aaa; transition: color 0.3s;">&#128279;</a> <!-- LinkedIn icon -->
+        <a href="#" style="color: #aaa; transition: color 0.3s;">&#127909;</a> <!-- YouTube icon -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Divider + Copyright -->
+  <hr style="margin: 30px 0; border-color: #444;" />
+  <p style="text-align: center; color: #888;">&copy; 2025 RetailQ. All rights reserved.</p>
+</footer>
+
+
+</body>
+</html>
