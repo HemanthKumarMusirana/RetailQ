@@ -38,6 +38,7 @@
     .navbar .links {
       display: flex;
       gap: 20px;
+      align-items: center;
     }
 
     .navbar .links a {
@@ -50,6 +51,19 @@
 
     .navbar .links a:hover {
       color: #00bfff;
+    }
+
+    .profile-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #00bfff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #fff;
+      font-size: 18px;
     }
 
     .container {
@@ -75,20 +89,31 @@
       text-align: left;
     }
 
-    .user-info, .business-info {
-      margin-bottom: 30px;
+    .form-field {
+      margin-bottom: 15px;
       text-align: left;
     }
 
-    .user-info p, .business-info p {
-      margin: 5px 0;
-    }
-
-    .user-info .label, .business-info .label {
+    .form-field label {
+      display: block;
       font-weight: bold;
+      margin-bottom: 5px;
     }
 
-    /* Graph */
+    .form-field input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 14px;
+    }
+
+    input[readonly] {
+      pointer-events: none;
+    }
+
     canvas {
       width: 100%;
       max-width: 500px;
@@ -157,35 +182,34 @@
       <a href="demand.html">Demand</a>
       <a href="index.html">Logout</a>
       <a href="profile.html">Profile</a>
+      <div class="profile-icon">J</div>
     </div>
   </div>
 
   <div class="container">
     <h2>📁 User & Business Information</h2>
 
-    <!-- Personal Info Section -->
-    <div class="user-info">
-      <div class="section-title">Basic Info:</div>
-      <p><span class="label">Name:</span> John Doe</p>
-      <p><span class="label">Age:</span> 35</p>
-      <p><span class="label">Gender:</span> Male</p>
-      <p><span class="label">Business Type:</span> Retail</p>
-      <p><span class="label">Address:</span> 123 Business St., City, Country</p>
-    </div>
+    <!-- Bio Section -->
+    <div class="section-title">Bio</div>
+    <div class="form-field"><label>Name</label><input type="text" value="John Doe" readonly></div>
+    <div class="form-field"><label>Age</label><input type="text" value="35" readonly></div>
+    <div class="form-field"><label>Gender</label><input type="text" value="Male" readonly></div>
+    <div class="form-field"><label>Email</label><input type="text" value="john@example.com" readonly></div>
+    <div class="form-field"><label>Address</label><input type="text" value="123 Business St., City, Country" readonly></div>
+    <div class="form-field"><label>Business Type</label><input type="text" value="Retail" readonly></div>
+    <div class="form-field"><label>Business Name</label><input type="text" value="RetailQ Store" readonly></div>
 
     <!-- Business Info Section -->
-    <div class="business-info">
-      <div class="section-title">Business Info:</div>
-      <p><span class="label">Business Name:</span> RetailQ Store</p>
-      <p><span class="label">Business Type:</span> Online Retail</p>
-      <p><span class="label">Monthly Revenue:</span> $50,000</p>
-      <p><span class="label">Yearly Revenue:</span> $600,000</p>
-      <p><span class="label">Number of Workers:</span> 50</p>
+    <div class="section-title">Business Details</div>
+    <div class="form-field"><label>Business Name</label><input type="text" value="RetailQ Store" readonly></div>
+    <div class="form-field"><label>Business Type</label><input type="text" value="Online Retail" readonly></div>
+    <div class="form-field"><label>No. of People Working</label><input type="text" value="50" readonly></div>
+    <div class="form-field"><label>Monthly Revenue</label><input type="text" value="$50,000" readonly></div>
+    <div class="form-field"><label>Monthly Expenditure</label><input type="text" value="$40,000" readonly></div>
+    <div class="form-field"><label>Monthly Profit/Loss</label><input type="text" value="$10,000 (Profit)" readonly></div>
 
-      <!-- Graph for Monthly & Yearly Revenue -->
-      <h3>Revenue Comparison</h3>
-      <canvas id="revenueGraph"></canvas>
-    </div>
+    <h3>Revenue Comparison</h3>
+    <canvas id="revenueGraph"></canvas>
 
     <!-- File Upload Section -->
     <div class="upload-area" id="upload-area">
@@ -228,13 +252,11 @@
         return;
       }
 
-      // Simulated upload – replace with actual API request later
       setTimeout(() => {
         successMsg.style.display = "block";
       }, 500);
     }
 
-    // Monthly & Yearly Revenue Graph
     const ctx = document.getElementById('revenueGraph').getContext('2d');
     const revenueChart = new Chart(ctx, {
       type: 'bar',
