@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RetailQ AI Dashboard</title>
-  <link rel="icon" type="image/x-icon" href="Q - Fevicon.png">
+  <link rel="icon" type="image/x-icon" href="/frontend_simple/Q - Fevicon.png">
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -110,7 +110,7 @@
 <body>
   <div class="navbar">
     <div class="logo">
-      <img src="Q - Fevicon.png" alt="RetailQ Logo" width="30" height="30">
+      <img src="/frontend_simple/Q - Fevicon.png" alt="RetailQ Logo" width="30" height="30">
       <span>RetailQ</span>
     </div>
     <div class="links">
@@ -135,7 +135,7 @@
     <div id="forecastOutput"></div>
 
     <button onclick="runMAF()">Run Multi-Agent Flow</button>
-    
+    <h2>🧠 Multi-Agent Flow Result</h2>
     <div id="mafOutput"></div>
   </div>
 
@@ -151,3 +151,34 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+ 
+
+<!-- 💬 Mistral AI Q&A Section -->
+<div style="padding: 30px;">
+  <h2>🤖 Ask Q - The Brain of RetailQ </h2>
+  <input type="text" id="questionInput" placeholder="Ask a question..." style="width: 60%; padding: 10px; font-size: 16px;" />
+  <button onclick="askQuestion()" style="padding: 10px 20px; margin-left: 10px;">Ask</button>
+  <div id="answerBox" style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;"></div>
+</div>
+
+<script>
+  function askQuestion() {
+    const question = document.getElementById("questionInput").value;
+
+    fetch("http://localhost:5000/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ question: question })
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("answerBox").innerText = data.answer || "No answer returned.";
+    })
+    .catch(error => {
+      document.getElementById("answerBox").innerText = "Error: " + error.message;
+    });
+  }
+</script>
