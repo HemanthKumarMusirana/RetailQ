@@ -227,36 +227,59 @@
   </section>
   
   <!-- Footer -->
-<footer style="background-color: #111; color: #fff; padding: 60px 50px 30px;">
+ <!-- Font Awesome CDN for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<footer style="background-color: #000; color: #fff; padding: 60px 50px 30px;">
   <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;">
-    
+
     <!-- Logo + Tagline -->
     <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
-      <h2 style="font-size: 28px; margin-bottom: 10px;">RetailQ</h2>
-      <p style="color: #aaa;">AI-powered Retail Optimization</p>
+      <h2 style="font-size: 28px; margin-bottom: 10px;">
+        Retail<span style="color:#00ffff;">Q</span>
+      </h2>
+      <p style="color: #ccc;">AI-powered Retail<span style="color:#00ffff;">Q</span> Optimization</p>
     </div>
 
     <!-- Quick Links -->
     <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
       <h3 style="margin-bottom: 10px;">Quick Links</h3>
       <ul style="list-style: none; padding: 0;">
-        <li><a href="#hero" style="color: #aaa; text-decoration: none;">Home</a></li>
-        <li><a href="#about" style="color: #aaa; text-decoration: none;">About Us</a></li>
-        <li><a href="#contact" style="color: #aaa; text-decoration: none;">Contact Us</a></li>
+        <li><a href="#hero" class="footer-link">Home</a></li>
+        <li><a href="#about" class="footer-link">About Us</a></li>
+        <li><a href="#contact" class="footer-link">Contact Us</a></li>
       </ul>
     </div>
 
     <!-- Social Media -->
     <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
       <h3 style="margin-bottom: 10px;">Follow Us</h3>
-      <div style="display: flex; gap: 15px; font-size: 24px;">
-        <a href="#" style="color: #aaa; transition: color 0.3s;">&#120143;</a> <!-- X -->
-        <a href="#" style="color: #aaa; transition: color 0.3s;">&#128279;</a> <!-- LinkedIn icon -->
-        <a href="#" style="color: #aaa; transition: color 0.3s;">&#127909;</a> <!-- YouTube icon -->
+      <div style="display: flex; gap: 20px; font-size: 24px;">
+        <a href="#" class="footer-icon"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" class="footer-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="footer-icon"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
 
   </div>
+</footer>
+
+<!-- Footer Hover Styles -->
+<style>
+  .footer-link, .footer-icon {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-link:hover,
+  .footer-icon:hover {
+    color: #00ffff; /* RetailQ Electric Blue */
+  }
+</style>
+
+
+     
 
   <!-- Divider + Copyright -->
   <hr style="margin: 30px 0; border-color: #444;" />
